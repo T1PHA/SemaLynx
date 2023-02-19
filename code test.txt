@@ -1,0 +1,56 @@
+# models.py
+from django.db import models
+
+class Machine(models.Model):
+    name = models.CharField(max_length=100)
+    ip_address = models.GenericIPAddressField()
+    status = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.name
+
+# views.py
+from django.shortcuts import render, redirect
+from .models import Machine
+
+def index(request):
+    machines = Machine.objects.all()
+    return render(request, 'index.html', {'machines': machines})
+
+def toggle_status(request, pk):
+    machine = Machine.objects.get(pk=pk)
+    machine.status = not machine.status
+    machine.save()
+    return redirect('index')
+
+# urls.py
+from django.urls import path
+from .views import index, toggle_status
+
+urlpatterns = [
+    path('', index, name='index'),
+    path('toggle_status/<int:pk>/', toggle_status, name='toggle_status'),
+]
+
+# index.html
+<table>
+  <tr>
+    <th>Name</th>
+    <th>IP Address</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  {% for machine in machines %}
+  <tr>
+    <td>{{ machine.name }}</td>
+    <td>{{ machine.ip_address }}</td>
+    <td>{{ machine.status }}</td>
+    <td>
+      <form action="{% url 'toggle_status' machine.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Toggle Status</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>

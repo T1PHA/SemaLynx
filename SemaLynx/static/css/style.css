@@ -1,0 +1,40 @@
+/* Style pour les conteneurs des machines */
+body {
+  background-color: #000000;
+  font-family: Arial, sans-serif;
+}
+
+div {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Style pour les titres de machine */
+h2 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+/* Style pour les états de machine */
+p {
+  margin: 5px 0;
+}
+
+/* Style pour les boutons de redémarrage */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Style au survol des boutons de redémarrage */
+button:hover {
+  background-color: #3e8e41;
+}
