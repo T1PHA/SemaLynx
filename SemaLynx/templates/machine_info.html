@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <title>Tableau de bord</title>
+</head>
+<body>
+    <div>
+    <h1>Tableau de bord de {{ nom }}</h1>
+    </div>
+    <div>
+    <p>Adresse IP de la machine distante : {{ ip_address }}</p>
+    </div>
+    <div>
+    <p>Résultat du test de débit : {{ test_debit }} MBytes/s</p>
+    </div>
+    
+    <div>
+    <p>Nom de la machine : {{ nom }}</p>
+    
+    {% if connected %}
+        <p>Machine bien connectée</p>
+    {% else %}
+        <p>Machine mal connectée</p>
+    {% endif %}
+    </div>
+    <div>
+    <h2>Machines connectées :</h2>
+    <ul>
+    <p> {{ ip_list }} </p>
+    </ul>
+    </div>
+</body>
+</html>

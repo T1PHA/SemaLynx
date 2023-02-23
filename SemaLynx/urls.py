@@ -20,6 +20,10 @@ from . import views
 
 urlpatterns = [
     path('', views.main, name='main'),
-    # path('restart/<str:machine_ip>/', views.machine_restart, name='machine_restart'),
-    # path('', views.machine_status, name='machine_status'),
+    path("simple_function", views.simple_function),
+    path("simple_function2", views.simple_function2),
+    path("simple_function3", views.simple_function3),
+    path("machine_info", views.machine_info),
+    path("machine_info2", views.machine_info2),
+    path("machine_info3", views.machine_info3),
 ]

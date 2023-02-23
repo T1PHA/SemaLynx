@@ -1,57 +1,55 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+  <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    
+    <title>Machines</title>
+  </head>
+  <body>
     {% for machine in machines %}
     <div>
-        <h2>{{ machine.name }}</h2>
-        <p>Status: {{ machine.status }}</p>
-        <form method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="machine" value="{{ forloop.counter0 }}">
-            <button type="submit">Reboot</button>
-        </form>
-    </div>
-{% endfor %}
-
-
-
-
-
-
-
-
-<!-- <table>
-  <tr>
-    <th>Machine</th>
-    <th>Status</th>
-    <th>Action</th>
-  </tr>
-  {% for machine in machines %}
-  <tr>
-    <td>{{ machine }}</td>
-    <td>{% if statuses.machine == 1 %}Online{% else %}Offline{% endif %}</td>
-    <td>
-      {% if statuses.machine == 1 %}
-      <form action="{% url 'machine_restart' machine %}" method="post">
+      <h2>{{ machine.name }}</h2>
+      <p>Etat: {{ machine.Etat }}</p>
+      {% if machine.ip == '192.168.146.138' %}
+      <form action="simple_function">
         {% csrf_token %}
-        <input type="submit" value="Restart">
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Redémarrer la machine</button>
       </form>
-      {% else %}
-      <p>Cannot restart offline machine</p>
+      <form action="machine_info">
+        {% csrf_token %}
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Afficher le tableau de bord</button>
+      </form>
+      {% elif machine.ip == '192.168.146.128' %}
+      <form action="simple_function2">
+        {% csrf_token %}
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Redémarrer la machine</button>
+      </form>
+      <form action="machine_info2">
+        {% csrf_token %}
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Afficher le tableau de bord</button>
+      </form>
+      {% elif machine.ip == '192.168.146.1' %}
+      <form action="simple_function3">
+        {% csrf_token %}
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Redémarrer la machine</button>
+      </form>
+      <form action="machine_info3">
+        {% csrf_token %}
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Afficher le tableau de bord</button>
+      </form>
       {% endif %}
-    </td>
-  </tr>
-  {% endfor %}
-</table> -->
-
-</body>
+    </div>
+    {% endfor %}
+  </body>
 </html>
+
+
+
+
+

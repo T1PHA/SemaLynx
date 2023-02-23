@@ -1,0 +1,28 @@
+Ajoute à la place dans sudo visudo afin de pouvoir exécuter les commandes sur les scripts: 
+remplaceer "kali" par l'utilisateur de la machine
+
+root    ALL=(ALL:ALL) ALL
+kali    ALL=(ALL:ALL) ALL
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "@include" directives:
+
+@includedir /etc/sudoers.d
+kali    ALL=(ALL) NOPASSWD: ALL
+
+
+
+
+ET REDEMARRER SSH
+installer iperf3 sur toutes les machines, mettre la machine qui héberge semalynx en serveur distant pour ping debit
+et START le service
+Pour le test de débit de semalynx, il est en mbytes. Il est égal à celui du tdb sauf que celui du tdb est en mo.
+Ils ont la même valeur mais pas en la meme unité
+
+modifs css non prises en compte : ctrl maj suppr vider cache
+
+
+
+
+
