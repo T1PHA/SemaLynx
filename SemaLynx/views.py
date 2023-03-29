@@ -13,9 +13,9 @@ def index(request):
 
 def main(request):
     machines = [
-        {'name': 'Semabox 1', 'ip': '192.168.146.138'},
-        {'name': 'Semabox 2', 'ip': '192.168.146.128'},
-        {'name': 'Semabox 3', 'ip': '192.168.146.1'},
+        {'name': 'Semabox 1', 'ip': '192.168.29.132'},
+        {'name': 'Semabox 2', 'ip': '192.168.29.136'},
+        {'name': 'Semabox 3', 'ip': '192.168.29.135'},
     ]
 
     for machine in machines:
@@ -44,7 +44,7 @@ def simple_function(request):
 
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect("192.168.146.138", username='kali', password='kali')
+    client.connect("192.168.29.132", username='sema', password='123456789')
 
     stdin, stdout, stderr = client.exec_command("sudo reboot") #nmap -sV 172.16.234.100
     for line in stdout.read().splitlines():
@@ -61,7 +61,7 @@ def simple_function2(request):
 
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect("192.168.146.128", username='kali', password='kali')
+    client.connect("192.168.29.136", username='sema', password='123456789')
 
     stdin, stdout, stderr = client.exec_command("sudo reboot") #nmap -sV 172.16.234.100
     for line in stdout.read().splitlines():
@@ -78,7 +78,7 @@ def simple_function3(request):
 
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect("192.168.146.1", username='kali', password='kali')
+    client.connect("192.168.29.135", username='sema', password='123456789')
 
     stdin, stdout, stderr = client.exec_command("sudo reboot") #nmap -sV 172.16.234.100
     for line in stdout.read().splitlines():
@@ -98,7 +98,7 @@ def machine_info(request):
     # établir une connexion SSH avec la machine distante
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh_client.connect(hostname="192.168.146.138", username="kali", password="kali")
+    ssh_client.connect(hostname="192.168.29.132", username="sema", password="123456789")
 
     # exécuter une commande pour tester le fonctionnement de la connexion Internet
     stdin, stdout, stderr = ssh_client.exec_command('ping -c 1 google.com')
@@ -106,7 +106,7 @@ def machine_info(request):
     
     # exécuter une commande pour tester le débit de la connexion Internet
     # METTRE IP DE SEMALYNX
-    stdin, stdout, stderr = ssh_client.exec_command("iperf3 -c 192.168.146.134 -i 1 -t 1")
+    stdin, stdout, stderr = ssh_client.exec_command("iperf3 -c 192.168.29.137 -i 1 -t 1")
     output = stdout.read().decode('utf-8')
     test_debit= re.findall(r"(\d+\.\d+)\s*MBytes", output)
 
@@ -119,7 +119,7 @@ def machine_info(request):
     machine_nom = stdout.read().decode().strip()
     
     # Exécution de la commande pour récupérer les adresses IP des machines connectées au réseau local
-    stdin, stdout, stderr = ssh_client.exec_command("arp -a | awk '{print $2}' | cut -d '(' -f2 | cut -d ')' -f1")
+    stdin, stdout, stderr = ssh_client.exec_command("nmap -sn 192.168.29.0/24 | awk '/^Nmap scan report for/{printf $5" ";}/^MAC Address:/{print $3;}' | grep -Eo '([0-9]{1,3}.){3}[0-9]{1,3}'")
     ip_list = stdout.read().decode().strip()
 
     # fermer la connexion SSH
@@ -149,7 +149,7 @@ def machine_info2(request):
     # établir une connexion SSH avec la machine distante
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh_client.connect(hostname="192.168.146.128", username="kali", password="kali")
+    ssh_client.connect(hostname="192.168.29.136", username="sema", password="123456789")
 
     # exécuter une commande pour tester le fonctionnement de la connexion Internet
     stdin, stdout, stderr = ssh_client.exec_command('ping -c 1 google.com')
@@ -157,7 +157,7 @@ def machine_info2(request):
     
     # exécuter une commande pour tester le débit de la connexion Internet
     # METTRE IP DE SEMALYNX
-    stdin, stdout, stderr = ssh_client.exec_command("iperf3 -c 192.168.146.134 -i 1 -t 1")
+    stdin, stdout, stderr = ssh_client.exec_command("iperf3 -c 192.168.29.137 -i 1 -t 1")
     output = stdout.read().decode('utf-8')
     test_debit= re.findall(r"(\d+\.\d+)\s*MBytes", output)
 
@@ -170,7 +170,7 @@ def machine_info2(request):
     machine_nom = stdout.read().decode().strip()
     
     # Exécution de la commande pour récupérer les adresses IP des machines connectées au réseau local
-    stdin, stdout, stderr = ssh_client.exec_command("arp -a | awk '{print $2}' | cut -d '(' -f2 | cut -d ')' -f1")
+    stdin, stdout, stderr = ssh_client.exec_command("nmap -sn 192.168.29.0/24 | awk '/^Nmap scan report for/{printf $5" ";}/^MAC Address:/{print $3;}' | grep -Eo '([0-9]{1,3}.){3}[0-9]{1,3}'")
     ip_list = stdout.read().decode().strip()
 
     # fermer la connexion SSH
@@ -200,7 +200,7 @@ def machine_info3(request):
     # établir une connexion SSH avec la machine distante
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh_client.connect(hostname="192.168.146.1", username="tiph", password="197207")
+    ssh_client.connect(hostname="192.168.29.135", username="sema", password="123456789")
 
     # exécuter une commande pour tester le fonctionnement de la connexion Internet
     stdin, stdout, stderr = ssh_client.exec_command('ping -c 1 google.com')
@@ -208,7 +208,7 @@ def machine_info3(request):
     
     # exécuter une commande pour tester le débit de la connexion Internet
     # METTRE IP DE SEMALYNX
-    stdin, stdout, stderr = ssh_client.exec_command("iperf3 -c 192.168.146.134 -i 1 -t 1")
+    stdin, stdout, stderr = ssh_client.exec_command("iperf3 -c 192.168.29.137 -i 1 -t 1")
     output = stdout.read().decode('utf-8')
     test_debit= re.findall(r"(\d+\.\d+)\s*MBytes", output)
 
@@ -221,7 +221,7 @@ def machine_info3(request):
     machine_nom = stdout.read().decode().strip()
     
     # Exécution de la commande pour récupérer les adresses IP des machines connectées au réseau local
-    stdin, stdout, stderr = ssh_client.exec_command("arp -a | awk '{print $2}' | cut -d '(' -f2 | cut -d ')' -f1")
+    stdin, stdout, stderr = ssh_client.exec_command("nmap -sn 192.168.29.0/24 | awk '/Nmap scan report/{printf $5;}/MAC Address:/{print \" => \"$3;}' | grep -Eo '([0-9]{1,3}.){3}[0-9]{1,3}'")
     ip_list = stdout.read().decode().strip()
 
     # fermer la connexion SSH
