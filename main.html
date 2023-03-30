@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>Machines</title>
+  </head>
+  <body>
+    {% for machine in machines %}
+    <div>
+      <h2>Semabox 1</h2>
+      <p>Etat:machine.Etat</p>
+      machine.ip == '192.168.29.132'
+      <form action="simple_function">
+        
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Redémarrer la machine</button>
+      </form>
+      <form action="machine_info">
+        
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Afficher le tableau de bord</button>
+      </form>
+<h2>Semabox 2</h2>
+      machine.ip == '192.168.29.136'
+      <form action="simple_function2">
+        
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Redémarrer la machine</button>
+      </form>
+      <form action="machine_info2">
+        
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Afficher le tableau de bord</button>
+      </form>
+<h2>Semabox 3</h2>
+      machine.ip == '192.168.29.135'
+      <form action="simple_function3">
+        
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Redémarrer la machine</button>
+      </form>
+      <form action="machine_info3">
+        
+        <input type="hidden" name="ip" value="{{ machine.ip }}">
+        <button role="button" type="submit">Afficher le tableau de bord</button>
+      </form>
+    </div>
+  </body>
+</html>
+
+
+
+
+
